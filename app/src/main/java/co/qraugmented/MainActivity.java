@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.graphics.PointF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 
 public class MainActivity extends Activity implements QRCodeReaderView.OnQRCodeReadListener {
 
+    private final static String TAG = MainActivity.class.getSimpleName();
     private TextView myTextView;
     private QRCodeReaderView mydecoderview;
 
@@ -31,6 +33,11 @@ public class MainActivity extends Activity implements QRCodeReaderView.OnQRCodeR
     @Override
     public void onQRCodeRead(String text, PointF[] points) {
         myTextView.setText(text);
+
+
+        for(int i = 0; i < points.length; i++) {
+            Log.d(TAG, "  Point " + i + " =  " + points[i]);
+        }
     }
 
 
