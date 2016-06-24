@@ -21,6 +21,7 @@ public class MainActivity extends Activity implements QRCodeReaderView.OnQRCodeR
     private ImageView mImageView;
     private QRCodeReaderView mydecoderview;
     private TextView mPositionText;
+    private GIFView mGifView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,12 @@ public class MainActivity extends Activity implements QRCodeReaderView.OnQRCodeR
         mydecoderview = (QRCodeReaderView) findViewById(R.id.qrdecoderview);
         mImageView = (ImageView) findViewById(R.id.augmentedImage);
         mPositionText = (TextView) findViewById(R.id.postitionText);
+        mGifView = (GIFView) findViewById(R.id.gifView);
         mydecoderview.setOnQRCodeReadListener(this);
 
     }
 
-
+boolean isGif = false;
     // Called when a QR is decoded
     // "text" : the text encoded in QR
     // "points" : points where QR control points are placed
@@ -54,13 +56,22 @@ public class MainActivity extends Activity implements QRCodeReaderView.OnQRCodeR
             mImageView.setImageResource(R.drawable.mcdonalds);
         } else if (text.toLowerCase().contains("uefa")) {
             mImageView.setImageResource(R.drawable.euro);
-        } else {
+        } else if (text.toLowerCase().contains("gif") && !isGif) {
+            mImageView.setImageResource(R.drawable.gif);
+            isGif = true;
+        } else if (!isGif) {
             mImageView.setImageResource(R.drawable.smiley);
         }
 
-
-        mImageView.setVisibility(View.VISIBLE);
-        mImageView.setLayoutParams(params1);
+        if (text.toLowerCase().contains("gif")) {
+            mGifView.setVisibility(View.VISIBLE);
+            mGifView.setLayoutParams(params1);
+            mImageView.setVisibility(View.INVISIBLE);
+        } else {
+            mImageView.setVisibility(View.VISIBLE);
+            mImageView.setLayoutParams(params1);
+            mGifView.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -79,6 +90,9 @@ public class MainActivity extends Activity implements QRCodeReaderView.OnQRCodeR
     @Override
     public void QRCodeNotFoundOnCamImage() {
         mImageView.setVisibility(View.INVISIBLE);
+        mGifView.setVisibility(View.INVISIBLE);
+        isGif = false;
+
     }
 
     @Override

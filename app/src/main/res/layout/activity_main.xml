@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:components="http://schemas.android.com/apk/res-auto"
     tools:context="co.qraugmented.MainActivity">
 
 
@@ -26,4 +27,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+    <co.qraugmented.GIFView
+        android:id="@+id/gifView"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        components:src="@raw/gif" />
+
+    </RelativeLayout>
