@@ -19,4 +19,11 @@
         android:layout_height="wrap_content"
         android:src="@drawable/smiley"/>
 
+    <TextView
+        android:id="@+id/postitionText"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>
